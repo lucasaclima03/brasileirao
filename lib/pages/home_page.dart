@@ -1,9 +1,22 @@
+import 'package:brasileirao/models/time.dart';
 import 'package:brasileirao/pages/home_controller.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   var controller = HomeController();
-  HomePage({Key? key}) : super(key: key);
+
+  @override
+  void initState() {
+    super.initState();
+    controller = HomeController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +28,7 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView.separated(
         itemBuilder: (context, int i) {
-          final tabela = controller.tabela;
+          final List<Time> tabela = controller.tabela;
           return ListTile(
             leading: Image.network(
               tabela[i].brasao,
